@@ -3,6 +3,7 @@ const cros = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
+const productRoutes = require("./routes/productRoutes");
 dotenv.config();
 connectDB();
 
@@ -16,6 +17,10 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
+// app.use("/api/orders", authRoutes);
+// app.use("/api/payment", authRoutes);
+// app.use("/api/analytics", authRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
