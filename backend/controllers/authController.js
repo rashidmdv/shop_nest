@@ -2,7 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const sendEmail = require("../utils/sendEmail");
 const { generateToken } = require("../helpers/helper");
-const { responseWithSuccess } = require("../helpers/apiResponse");
+const { apiResponse } = require("../helpers/apiResponse");
 
 const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
@@ -52,19 +52,17 @@ async function loginUser(req, res) {
     return res.status(400).json({ message: "User Not Found" });
   } else {
     const isMatch = await bcrypt.compare(password, user.password);
-    if (isMatch) {
-      // return res.status(200).json({
-      //   message: "Login successful",
-      //   _id: user._id,
-      //   name: user.name,
-      //   email: user.email,
-      //   role: user.role,
-      //   token: generateToken(user._id),
-      // });
-      responseWithSuccess(res,)
-    } else {
+    if (!isMatch) {
       return res.status(400).json({ message: "Invalid Username or Password" });
     }
+    const data = {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      token: generateToken(user._id),
+    };
+    apiResponse(res, "Login successful", data);
   }
 }
 
