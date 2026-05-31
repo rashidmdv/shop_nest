@@ -6,6 +6,18 @@ const apiResponse = (
   msg_type = null,
   alert = false,
 ) => {
+  const response = data;
+  return res.status(statusCode).json(response);
+};
+
+const successResponse = (
+  res,
+  message = "",
+  data = [],
+  statusCode = 200,
+  msg_type = null,
+  alert = false,
+) => {
   const response = {
     status: statusCode,
     message: message,
@@ -13,7 +25,7 @@ const apiResponse = (
     msg_type: msg_type,
     alert: alert,
   };
-  res.status(statusCode).json(response);
+  return res.status(statusCode).json(response);
 };
 
 module.exports = {

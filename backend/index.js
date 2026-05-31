@@ -1,15 +1,21 @@
 const express = require("express");
 const cros = require("cors");
 const dotenv = require("dotenv");
-const connectDB = require("./config/db");
-const authRoutes = require("./routes/authRoutes");
-const productRoutes = require("./routes/productRoutes");
 dotenv.config();
+const connectDB = require("./config/db");
 connectDB();
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cros());
+
+const authRoutes = require("./routes/authRoutes");
+const productRoutes = require("./routes/productRoutes");
+const orderRoutes = require("./routes/orderRoutes");
+const paymentsRoutes = require("./routes/paymentsRoutes");
+const anayticsRoutes = require("./routes/anayticsRoutes");
+
 const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
@@ -18,9 +24,9 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
-// app.use("/api/orders", authRoutes);
-// app.use("/api/payment", authRoutes);
-// app.use("/api/analytics", authRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/payment", paymentsRoutes);
+app.use("/api/analytics", anayticsRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
