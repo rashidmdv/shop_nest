@@ -8,7 +8,11 @@ connectDB();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cros());
+app.use(
+  cros({
+    origin: "http://localhost:5173",
+  }),
+);
 
 const authRoutes = require("./routes/authRoutes");
 const productRoutes = require("./routes/productRoutes");

@@ -1,0 +1,30 @@
+{
+  "name": "shop_nest",
+  "version": "1.0.0",
+  "description": "Ecommerce",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd backend && npm install && cd ../frontend && npm install",
+    "deb:server": "cd backend && npm run dev",
+    "deb:client": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run deb:server\" \"npm run deb:client\"",
+    "build": "cd frontend && npm run build"
+  },
+  "keywords": [
+    "Ecommerce",
+    "microservice"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rashidmdv/shop_nest.git"
+  },
+  "author": "Rashid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rashidmdv/shop_nest/issues"
+  },
+  "homepage": "https://github.com/rashidmdv/shop_nest#readme",
+  "dependencies": {
+    "concurrently": "^10.0.1"
+  }
+}
