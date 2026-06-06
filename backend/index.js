@@ -14,6 +14,12 @@ app.use(
   }),
 );
 
+app.use(express.static(path.join(process.cwd(), "frontend/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(process.cwd(), "frontend/dist/index.html"));
+});
+
 const authRoutes = require("./routes/authRoutes");
 const productRoutes = require("./routes/productRoutes");
 const orderRoutes = require("./routes/orderRoutes");
