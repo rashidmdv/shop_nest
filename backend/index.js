@@ -11,9 +11,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cros({
-    origin: "http://localhost:5173",
+    origin: "https://shop-nest-npwo.onrender.com",
   }),
 );
+// app.use(
+//   cros({
+//     origin: "http://localhost:5173",
+//   }),
+// );
 
 // app.use(express.static(path.join(process.cwd(), "frontend/dist")));
 
